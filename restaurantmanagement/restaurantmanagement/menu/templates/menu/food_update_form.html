@@ -1,0 +1,48 @@
+{% extends 'layout-admin.html' %}
+{% load bootstrap %}
+{% block title %}
+    <title>Update Food</title>
+{% endblock%}
+
+{% block main_content %}
+<style>
+    .card.py-2.px-2{
+    background:red !important;}
+
+    .form-group label{
+    font-size:30px !important;
+    }
+</style>
+
+<div class="container">
+<div class="row">
+
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Update Food</h1>
+          {% include 'messages.html'%}
+        <div class="card py-2 px-2"
+        style="
+            border:1px solid #2ecc71 !important;
+        "
+        >
+        <form class="form" action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form_food | bootstrap_horizontal }}
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = "Enter food name"
+    form_fields[2].placeholder = "Enter food price"
+
+
+   for(field in form_fields){
+   form_fields[field].className += ' my-3'
+   }
+</script>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends 'layout.html' %}
+{% load static %}
+<style>
+    .remove-btn, .order-btn{
+        font-size:35px;
+
+    }
+    .order-btn:hover{
+        color:#2ecc71;
+    }
+    .remove-btn:hover{
+        color :#c0392b;
+    }
+    .bg-img{
+        /* <img src="{% static 'images/naxala.png' %}" */
+        background-image: url('../images/tableBG.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+        height:100vh;
+
+
+    }
+
+</style>
+{% block title %}
+
+<title>My Cart </title>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+{% endblock%}
+
+{% block main_content %}
+<div class="container-fluid pt-5 bg-img">
+    <div class="row">
+
+        <div class="col-md-10 offset-md-1">
+
+            {% include 'messages.html' %}
+
+                <table class="table  border table-dark table-hover table-striped ">
+                    <thead class='table-heading'>
+                        <tr>
+                            <th scope="col">Food Name</th>
+                            <th scope="col">Food Price</th>
+                            <th scope="col">Date Added</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    {% for i in items %}
+                    <tbody>
+
+                        <tr class='my-4 each-row' >
+                            <td> {{ i.food.food_name }}</td>
+                            <td> {{ i.food.food_price }}</td>
+                            <td> {{ i.created_date }}</td>
+                            <td><a class="btn btn-primary btn-sm " href="/menu/remove_cart_item/{{i.id}}"><i class=" remove-btn fas fa-trash-alt"></i></a> &nbsp;
+                                <a class="btn btn-danger btn-sm"
+                                href="/menu/order_form/{{i.food.id}}/{{i.id}}"
+                                onclick="return confirm('Are you sure want to order this food?')" ><i class=" order-btn fas fa-shopping-cart"></i></a></td>
+
+                            </tr>
+                        </tbody>
+                    {% endfor %}
+
+                </table>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'layout-admin.html' %} {% load static %} {% block title %}
+<title>Homepage</title>
+{% endblock title %} {% block main_content %}
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap');
+
+    .dashboard-title{
+        font-family: 'Grechen Fuemen', cursive;
+        color:#2ecc71;
+        text-align:center;
+        font-weight:bold;
+        font-size:40px;
+    }
+</style>
+<div class='container'>
+  <h1 class='dashboard-title mt-3'>Admin Dashboard</h1>
+  <table class="table table-striped border mt-3">
+    <thead class='table-dark'>
+      <tr>
+        <th>Food</th>
+        <th>User</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+        <th>Contact No.</th>
+
+        <th>Contact Address</th>
+        <th>Created Date</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order in orders %}
+      <tr>
+        <td>{{order.food}}</td>
+        <td>{{order.user}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.total_price}}</td>
+        <td>{{order.contact_no}}</td>
+        <td>{{order.contact_address}}</td>
+        <td>{{order.created_date}}</td>
+
+        <td>
+          <!--                                            <a  class="btn btn-primary"-->
+          <!--                onclick="return confirm('Are you sure want to add this item to cart?')">status</a>-->
+
+          <a
+            href="{% url 'status' order.id %}"
+            class="btn btn-sm btn-white text-success mr-2"
+          >
+            <i class="far fa-edit mr-1"></i> Pending</a
+          >
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock main_content %}

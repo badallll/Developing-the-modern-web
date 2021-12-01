@@ -1,0 +1,69 @@
+<style>
+
+
+.admin-nav{
+  position:fixed !important;
+  width:100% !important;
+  height:80px !important;
+  z-index:10000 !important;
+  background: #6BC945 !important;
+}
+
+.admin-nav navbar-brand nav-link{
+color:red !important;
+font-size: 16px;
+    padding: 10px 20px !important;
+    border-radius: 4px;
+    text-transform: uppercase;
+    border-radius:5px;
+}
+.home-menu li a:hover{
+background: #d65106;
+color:red !important;
+}
+
+
+
+.container{
+   margin-top:40px;
+    }
+</style>
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid admin-nav">
+    <a class="navbar-brand" href="/admins">Adimn Dashboard</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link {{activate_admins}}" href="/admins/dashboard">Order Detail</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{activate_category}}"
+             aria-current="page" href="/menu/get_category">Category</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link {{activate_food}}" href="/menu/get_food">Foods</a>
+        </li>
+         <li class="nav-item">
+          <a class="nav-link" href="/gallery">Gallery</a>
+
+
+        </li>
+          <li class="nav-item">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+
+
+
+
+      </ul>
+
+    </div>
+  </div>
+</nav>

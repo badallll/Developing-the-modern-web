@@ -1,0 +1,227 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,500&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins&display=swap');
+    *{
+        font-family: 'Roboto', sans-serif;
+    }
+
+ .form .control-label, .form div {
+width:100%}
+
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    margin-left:2% !important;
+}
+.col-sm-12{
+    width:520px !important;
+    }
+.form-outer{
+    margin-top:150px !important;
+    width:600px !important;
+}
+.row{
+    width:100%;
+}
+.title {
+    font-family: 'Kaushan Script', cursive;
+    font-size: 3.5rem;
+    font-weight: bold;
+    color: #400485;
+    font-style: italic
+}
+
+.login-title{
+    font-size:35px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#2ecc71 !important;
+    margin-bottom:15px;
+    text-decoration:underline;
+    padding-bottom:10px;
+
+}
+.card{
+    border:2px solid #2ecc71 !important;
+    border-radius:8px !important;
+    box-shadow: 4px 3px 8px rgba(0,0,0,0.3);
+}
+.card.py-2.px-2.pt-5{
+     box-shadow: 0px 0px 0px rgba(0,0,0,0);
+     border-radius:0px;
+    border:none !important;
+    padding-top:20px !important;
+    padding-left:100px !important;
+}
+
+
+.form-control.my-3{
+    width:60%;
+    margin-left:5px !important;
+    padding:8px 20px;
+    color:#2ecc71 !important;
+    outline:none !important;
+    box-shadow:none !important;
+    font-weight:400;
+
+
+}
+.control-label{
+    font-size:18px;
+    font-weight:500;
+    margin-top:10px;
+}
+.login-btn{
+    padding:8px 20px !important;
+    background:#2ecc71 !important;
+    color:#fff !important;
+    border-radius:8px !important;
+    box-shadow:2px 4px 8px rgba(0,0,0,0.3) !important;
+    border:none !important;
+    margin-top:15px;
+    transition:all ease .3s;
+    width:50%;
+    margin:20px auto;
+
+}
+.text-right{
+    margin:-20px auto 10px 150px;
+    font-size:16px;
+
+}
+
+
+.container{
+    display:flex;
+    margin-left:2% !important;
+}
+.form-outer{
+    margin-top:150px !important;
+    width:600px !important;
+}
+.row{
+    width:100%;
+}
+
+.card{
+    border:2px solid #2ecc71 !important;
+    border-radius:8px !important;
+    box-shadow: 4px 3px 8px rgba(0,0,0,0.3);
+}
+.card.py-2.px-2.pt-5{
+     box-shadow: 0px 0px 0px rgba(0,0,0,0);
+     border-radius:0px;
+    border:none !important;
+    padding-top:20px !important;
+    padding-left:100px !important;
+}
+
+
+.form-control.my-3{
+    width:60%;
+    margin-left:5px !important;
+    padding:8px 20px;
+    color:#2ecc71 !important;
+    outline:none !important;
+    box-shadow:none !important;
+    font-weight:400;
+}
+#id_username{
+    height:38px !important
+    }
+
+.form-control.my-3{
+        height:38px !important
+    }
+.control-label{
+    font-size:18px;
+    font-weight:500;
+    margin-top:10px;
+}
+.login-btn{
+    padding:8px 20px !important;
+    background:#2ecc71 !important;
+    color:#fff !important;
+    border-radius:8px !important;
+    box-shadow:2px 4px 8px rgba(0,0,0,0.3) !important;
+    border:none !important;
+    margin-top:15px;
+    transition:all ease .3s;
+    width:50% !important;
+    margin:20px auto;
+}
+
+.px-5{
+    height: 35px !important;
+    width: 38% !important;
+    font-size: 15px !important;
+    font-weight: 100 !important;
+  }
+.text-right{
+    margin:-20px auto 10px 150px;
+    font-size:16px;
+
+}
+.login-btn:hover{
+
+
+    transform:translateY(-6px) !important;
+
+}
+</style>
+{% extends 'layout.html' %}
+{% load bootstrap %}
+{% block title %}
+    <title>Login</title>
+{% endblock%}
+
+{% block main_content %}
+
+<div class="container p-0">
+<div class="row pt-5 pb-5"  >
+    <div class="col-lg-8 col-md-10 col-sm-12 mx-md-auto">
+        <div class="card ml-lg-5 mr-lg-5 has-shadow">
+            <div class="card-body ">
+<!--                <div class="row">-->
+<!--                            <img src="static/images/slide1.jpg" alt="Login Background Picture"-->
+<!--                                 style="width:350px; height:500px">-->
+
+
+
+<!--                    <div class=" col my-auto">-->
+                         <h1 class="text-center title">Login</h1>
+          {% include 'messages.html'%}
+        <div class="card py-2 px-2 pt-5">
+        <form class="form pb-5" action="" method="POST">
+            {% csrf_token %}
+            {{ form_login | bootstrap_horizontal }}
+            <button type="submit" class="btn btn-primary px-5 mt-.5 login">Login</button>
+        </form>
+
+            <div class="col-6 text-right">
+                        <a class="forgot-link" href="{% url 'reset_password' %}"
+                          >Forgot Password ?</a>
+                      </div>
+            <div class="text-center dont-have">
+                    Don't have an account yet?
+                    <a href="{% url 'register' %}">Register</a>
+                  </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = "Enter username"
+    form_fields[2].placeholder = "Enter password"
+
+   for(field in form_fields){
+   form_fields[field].className += ' my-3'
+   }
+</script>
+{% endblock %}

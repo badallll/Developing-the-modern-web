@@ -1,0 +1,112 @@
+
+{% extends 'layout-admin.html' %}
+{% block title %}
+<title>All Foods</title>
+{% endblock%}
+
+{% block main_content %}
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
+  integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
+  crossorigin="anonymous"
+/>
+<style>
+  @import url("https://fonts.googleapis.com/css2?family=Grechen+Fuemen&display=swap");
+  .new-food-add-title {
+    font-family: "Grechen Fuemen", cursive;
+    color: #2ecc71;
+    text-align: center;
+    font-weight: bold;
+    font-size: 40px;
+
+  }
+  .btn-newFood-add {
+    background: #2ecc71;
+      display: flex;
+      color:#fff;
+      font-size:18px;
+      font-weight: bold;
+      width:200px;
+      box-shadow: 2px 4px 4px rgba(0,0,0,0.6);
+    }
+    .btn-newFood-add:hover{
+        color:#fff;
+        background-color: #27ae60;
+        box-shadow: 4px 6px 4px rgba(0,0,0,0.5);
+    }
+  table{
+      border:2px solid #2ecc71 !important;
+      border-top: none !important;
+      box-shadow: 3px 4px 4px rgba(0,0,0,0.6);
+
+  }
+  .btn-edit{
+      background:#f1c40f;
+      color:#fff;
+  }
+  .btn-edit:hover{
+      background:#f39c12;
+      color:#fff;
+  }
+  .btn-delete{
+      background:#e74c3c;
+      color:#fff;
+  }
+  .btn-delete:hover{
+      background:#c0392b;
+      color:#fff;
+  }
+  tbody{
+      font-size:18px;
+
+  }
+</style>
+<div class="container">
+    <div class="row">
+
+
+            <h1 class="text-center new-food-add-title">All Foods</h1>
+            {% include 'messages.html' %}
+
+
+                <table class="table my-2 table-striped table-hover table-bordered">
+                    <a class="btn btn-newFood-add"
+                href="/menu/food_form"
+                >Add New Food</a>
+                <thead class='table-dark'>
+
+                    <tr>
+                        <th>Food Name</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Image</th>
+
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+                    {% for i in foods %}
+                    <tr>
+                        <td> {{ i.food_name }}</td>
+                        <td> {{ i.food_price }}</td>
+                        <td> {{ i.category.category_name }}</td>
+                        <td><img src="/{{i.food_image}}" width="200"> </td>
+                        <td><a class="btn btn-edit " href="/menu/update_food/{{i.id}}"><i class="fas fa-pen-nib"></i>Edit</a> &nbsp;
+                            <a class="btn btn-delete "
+                            href="/menu/delete_food/{{i.id}}"
+                            onclick="return confirm('Are you sure want to delete this food?')" ><i class="fas fa-trash-alt"></i>Delete</a></td>
+
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+
+                </table>
+
+
+    </div>
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,114 @@
+{% extends 'layout.html' %}
+{% load bootstrap %}
+{% block title %}
+<title>Profile</title>
+{% endblock%}
+
+{% block main_content %}
+<style>
+.profile-card{
+        margin-top: 35px !important
+        }
+
+    .profile-img-container{
+       width:230px;
+       padding:10px 0;
+
+    }
+    .profile-img-container img{
+        border-radius:50% !important;
+        object-fit: cover !important;
+        height:220px;
+        box-shadow:0px 5px 4px rgba(0,0,0,0.3);
+    }
+    .profile-card{
+        border:2px solid #2ecc71;
+        box-shadow:0px 5px 4px rgba(0,0,0,0.3);
+
+        display: flex;
+        justify-content: center !important;
+        align-items:center !important;
+        margin-bottom: 20px;
+
+    }
+    .update-card{
+        border:2px solid #2ecc71;
+        box-shadow:0px 5px 4px rgba(0,0,0,0.3);
+        padding:20px 40px !important;
+    }
+    .update-card .form-group label{
+        font-size:20px;
+        margin:10px 0;
+        font-weight:bold;
+
+    }
+    .user-info{
+        background:#8ce5b2;
+        border-radius:12px !important;
+        box-shadow:0px 5px 4px rgba(0,0,0,0.3);
+        border:none;
+        font-size:16px;
+        font-weight:bold;
+        margin:20px 0 !important;
+
+
+    }
+    .user-info .first-name{
+    }
+    .btn-submit-form{
+        background:#27ae60;
+        border:none;
+        transition:all ease .3s;
+    }
+    .btn-submit-form:hover{
+        background:#27ae60;
+        transform: scale(1.2);
+    }
+
+.col-md-7{
+    margin-top:35px !important}
+
+
+</style>
+<div class="container">
+    <div class="row ">
+        <div class="col-md-5">
+
+            <div class="card profile-card">
+                <div class="profile-img-container">
+                    <img src="/{{request.user.profile.profile_pic}}" width="400" class="img-fluid">
+
+                </div>
+                <div  class="card-footer user-info">
+                    <div class="first-name">Firstname : {{request.user.profile.firstname}}</div>
+                    <div class="last-name">Lastname : {{request.user.profile.lastname}}</div>
+                    <div class="email">Email : {{request.user.profile.email}}</div>
+                    <div class="phone">Phone : {{request.user.profile.phone}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+
+               {% include 'messages.html' %}
+
+                <div class="card  update-card py-2 px-2">
+                    <form class="form myForm" action="" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ form | bootstrap_horizontal}}
+                        <button type="submit" class="btn btn-primary mt-2 btn-submit-form">Submit</button>
+                    </form>
+                </div>
+        </div>
+    </div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = 'Enter first name';
+    form_fields[2].placeholder = 'Enter last name';
+    form_fields[3].placeholder = 'Enter phone number';
+
+    for (var field in form_fields){
+    field.className += ' my-2'
+    }
+</script>
+{% endblock %}

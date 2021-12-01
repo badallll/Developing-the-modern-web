@@ -1,0 +1,61 @@
+{% extends 'layout.html' %}
+{% load bootstrap %}
+{% block title %}
+    <title>Gallery</title>
+{% endblock%}
+
+{% block main_content %}
+<style>
+    *{
+        margin:0;
+        padding:0;
+        box-sizing: border-box;
+    }
+    .card-main{
+        display: flex;
+        justify-content: space-between;
+    }
+    .card-each{
+        border:3px solid #e74c3c;
+        border-radius:13px;
+        margin:20px 15px;
+        padding:0;
+        box-shadow: 3px 4px 3px rgba(0,0,0,0.3);
+        transition: all ease .3s;
+    }
+    .card-each:hover{
+
+        box-shadow: 10px 12px 3px rgba(0,0,0,0.3);
+    }
+    .card-img{
+    }
+    .card-img img{
+
+        height:300px !important;
+        border-radius:13px;
+        width: 100% !important;
+    }
+    .card-img img:hover{
+        transform: scale(1.03);
+    }
+    .gallery-title{
+        color:#2ecc71;
+        font-weight:bold;
+        letter-spacing: 1.3px;
+    }
+</style>
+<div class="container mt-5">
+
+            <div class="row card-main">
+            {% for photo in gallery %}
+            <div class='col-md-3 card-each'>
+                <div class="card-img">
+                    <img class='img-fluid' style="width:60px;" src="{{ photo.images.url }}" alt="Placeholder image">
+
+                </div>
+
+            </div>
+            {% endfor %}
+        </div>
+        </div>
+{% endblock %}

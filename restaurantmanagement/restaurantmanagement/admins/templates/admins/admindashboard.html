@@ -1,0 +1,93 @@
+{% extends 'layout-admin.html' %}
+{% load static %}
+{% block title %}
+<title>Admin-Dashboard</title>
+{% endblock %}
+{% block main_content %}
+<style>
+    .card-body a{
+    text-decoration:none;
+    color:#fff;
+    }
+    .card-body{
+        box-shadow: 3px 5px 3px rgba(0,0,0,0.3);
+        transition: all ease .3s;
+    }
+    .card-body:hover{
+        box-shadow: 6px 10px 3px rgba(0,0,0,0.3);
+
+    }
+    .card-header{
+        font-size:20px;
+        font-weight:bold;
+
+    }
+    .admin-each-card{
+    }
+    .admin-each-card-1{
+        background:#01C1F0;
+
+    }
+    .admin-each-card-2{
+        background:#00A65A;
+
+    }
+    .admin-each-card-3{
+        background:#F39C11;
+    }
+    .admin-each-card-4{
+        background:#D95352;
+    }
+
+
+</style>
+<div class="container " >
+
+  {% include 'messages.html' %}
+
+     <div class="row main-card">
+        <div class="col ">
+            <div class="card text-white admin-each-card-1 admin-each-card  mb-4" style="max-width: 35rem;">
+                <div class="card-header text-center">Total Admin</div>
+                <div class="card-body">
+                    <a href="/admins/admins">
+                        <h1 class="card-title text-center">{{admin}}</h1></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-white admin-each-card-2 admin-each-card -3" style="max-width: 35rem;">
+                <div class="card-header text-center">Total users</div>
+                <div class="card-body">
+                    <a href="/admins/users"><h1 class="card-title text-center">{{user}}</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+
+         <div class="row">
+        <div class="col">
+            <div class="card text-white admin-each-card-3 admin-each-card  mb-3" style="max-width: 35rem;">
+                <div class="card-header text-center">Total category</div>
+                <div class="card-body">
+                    <a href="/menu/get_category">
+                        <h1 class="card-title text-center">{{category}}</h1></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card text-white admin-each-card-4 admin-each-card -3" style="max-width: 35rem;">
+                <div class="card-header text-center">Total Foods</div>
+                <div class="card-body">
+                    <a href="/menu/get_food"><h1 class="card-title text-center">{{food}}</h1>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,81 @@
+
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,400;0,700;1,500&display=swap');
+ @import url('https://fonts.googleapis.com/css2?family=Kaushan+Script&family=Poppins&display=swap');
+h1.text-center{
+    font-family: 'Kaushan Script', cursive;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #400485;
+    font-style: italic
+
+}
+
+
+  .label.control-label.col-sm-2.col-lg-2 {
+  }
+  .control-label.col-sm-2.col-lg-2 {
+    font-weight: bold;
+    width: 80%;
+    font-size: 18px !important;
+    margin: 4px 0 !important;
+    text-decoration: underline;
+  }
+  .form-control.my-3 {
+    outline: none !important;
+    box-shadow: none !important;
+    border: 1px solid #2ecc71 !important;
+    padding: 6px 20px !important;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.3) !important;
+    margin: 4px 0 !important;
+  }
+  ul {
+    padding: 10px 30px !important;
+  }
+  ul li {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  .help-block {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+</style>
+{% extends 'layout.html' %}
+{% load bootstrap %}
+
+{% block title %}
+    <title>Add User</title>
+{% endblock%}
+
+{% block main_content %}
+
+<div class="container">
+<div class="row">
+
+    <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">Add New User</h1>
+          {% include 'messages.html'%}
+        <div class="card py-2 px-2">
+
+        <form class="form" action="" method="POST">
+            {% csrf_token %}
+            {{ form_register | bootstrap_horizontal }}
+            <button type="submit" class="btn btn-primary mt-3">Submit</button>
+        </form>
+    </div>
+    </div>
+</div>
+</div>
+<script>
+    var form_fields = document.getElementsByTagName('input')
+    form_fields[1].placeholder = "Enter username"
+    form_fields[2].placeholder = "Enter email address"
+    form_fields[3].placeholder = "Enter password"
+      form_fields[4].placeholder = "Confirm password"
+
+   for(field in form_fields){
+   form_fields[field].className += ' my-3'
+   }
+</script>
+{% endblock %}

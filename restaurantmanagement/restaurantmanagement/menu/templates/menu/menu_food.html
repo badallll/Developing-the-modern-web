@@ -1,0 +1,88 @@
+<style>
+    .img-card-container{
+
+    }
+    .item-details{
+        width:100%;
+        display:flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        border:2px solid #95a5a6;
+        border-radius:12px;
+        padding:10px 8px 0px 8px;
+        align-items:center;
+        margin:15px 0;
+
+    }
+    .item-details .food-name{
+        font-size:16px;
+        font-weight:bold;
+        color:rgba(0,0,0,0.6);
+        padding:6px 15px;
+        text-transform: capitalize;
+        border-radius:18px;
+        background-color: #bdc3c7;
+        margin-right:6px;
+    }
+    .item-details .food-price{
+        color:#27ae60;
+        font-size:18px;
+        font-weight:bold;
+        letter-spacing: 1.5px;
+    }
+    .food-img{
+        transition:all ease .3s;
+        border-radius:12px;
+    }
+    .food-img:hover{
+        transform: scale(1.04);
+    }
+</style>
+{% extends 'layout.html' %}
+{% load static %}
+
+{% block title %}
+<title>Menu</title>
+{% endblock title %}
+
+{% block main_content %}
+<div class='container'
+     style='display: flex !important;
+        justify-content:space-between !important;
+        align-items:center !important;
+        flex-wrap:wrap;
+'
+>
+    {% for i in categories %}
+    <main class='each-card'
+    style='
+        width:30%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-shadow:2px 3px 6px rgba(46, 204, 113, 1);
+        padding:20px 15px;
+        border-radius:8px;
+        margin:10px 15px;
+
+    '>
+
+                <h1>{{i.category_name}}</h1>
+
+            <div class='img-card-container'>
+                <img class='img-fluid food-img' src="/{{i.category_image}}" width="200"/>
+            </div>
+            <div>
+                <div class='item-details'>
+                    {% for j in i.food_set.all %}
+                        <p class='food-name'>{{j.food_name}}</p>
+                        <p class='food-price'>Rs. {{j.food_price }}</p>
+                        {% endfor %}
+                    </div>
+            </div>
+            </main>
+
+     {% endfor %}
+    </div>
+{% endblock main_content %}

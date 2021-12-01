@@ -1,0 +1,124 @@
+{% load static %}
+<style>
+  .naxal-title{
+    color:#2ce8bc;
+    font-size:35px;
+    line-height:50px !important;
+    margin-top:-10px;
+
+
+  }
+  .my-nav-main li{
+
+    border-radius:8px !important;
+
+  }
+  .my-nav-main li:hover{
+    background:#2ce8bc;
+
+  }
+  .my-nav-main li a:hover{
+    color:#000 !important;
+
+  }
+  div.container-fluid{
+
+  padding:0 !important;
+  }
+
+   .dropdown-menu.show{
+     background-color: #2ecc71;
+     padding:20px 15px !important;
+     border-radius: 8px !important;
+    }
+    .dropdown-menu.show li a{
+      font-size:16px;
+      color:#fff;
+      margin:5px 0;
+    }
+    .separate.nav-item a{
+      color:#fff;
+    }
+</style>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+<nav class="navbar navbar-expand-lg "
+style=' background:rgba(0,0,0,0.9);
+ border-radius:0;margin:0;padding:0;
+height:80px;padding:0;
+'
+>
+  <div class="container">
+    <a class="navbar-brand" href="/">
+
+      <h3 class='naxal-title'>Badal Resturant</h3></a>
+    <button style='border:2px solid #fff;' class="navbar-toggler"
+            type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="true"
+            aria-label="Toggle navigation">
+      <i class="fas fa-bars" style='color:#fff;'></i>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav my-nav-main  ms-auto mb-2 mb-lg-0"
+      style='
+      float:right;
+      width:400px;
+      display:flex;
+      justify-content: space-between;
+      z-index: 100 !important;
+      '
+      >
+          <li class="nav-item">
+          <a style='font-size:18px;color:#fff;' class="each-link-style nav-link {{activate_menu}}" href="/menu/menu">Menu</a>
+
+         </li>
+        <li class="nav-item">
+          <a style='font-size:18px;color:#fff;' class="each-link-style nav-link {{activate_food_user}}" href="/menu/get_food_user">Order</a>
+        </li>
+
+        <li class="nav-item">
+          <a style='font-size:18px;color:#fff;' class="each-link-style nav-link" href="/show_gallery">Photo</a>
+        </li>
+
+           <ul class="navbar-nav  me-right mb-2 mb-md-0">
+          {% if user.is_authenticated %}
+              <li class=" pp"><a href="/profile">
+              <img  src="/{{request.user.profile.profile_pic}}"  width="35" height="35" class="img-responsive mr-3 rounded-circle justify-content-center shadow-sm text-white">
+              </a>
+          </li>
+        <li class="separate nav-item ">
+          <a class=" nav-link {{activate_profile}}"
+           href="/profile">
+            {{request.user.username}}
+          </a>
+
+
+        <li class="nav-item dropdown  ">
+  <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+  </a>
+  <ul class="dropdown-menu" aria-labelledby="navbarDropdown" style="right:0; left:auto;"
+
+  >
+    <li><a style="color:white; " class="dropdown-item nav-link" href="/profile">Profile</a></li>
+    <li><a class="dropdown-item nav-link  " href="/menu/mycart">MyCarts</a></li>
+    <li><a class="dropdown-item nav-link " href="/menu/my_order">Recently Added</a></li>
+    <li><a class="dropdown-item" href="/admins/change_password">Password Change</a></li>
+    <li><a class="dropdown-item nav-link {{activate_logout}" href="/logout">Logout</a></li>
+  </ul>
+</li>
+
+
+        {% else %}
+          <li class="nav-item">
+          <a style='font-size:18px;color:#fff;' class="each-link-style nav-link {{activate_login}}" href="/login">Login</a>
+        </li>
+
+
+        {% endif %}
+
+      </ul>
+
+
+      </ul>
+    </div>
+  </div>
+</nav>
